@@ -38,7 +38,7 @@ router.post(
 
                 res.json(poster);
             } else {
-                return res.status(401).send('User Unauthorized');
+                return res.status(401).json({msg: 'User Unauthorized'});
             }
         } catch (err) {
             console.error(err.message);
@@ -46,5 +46,66 @@ router.post(
         }
     }
 );
+
+// @route   GET api/posters
+// @desc    Get all posters
+// @access  Public
+router.get('/', async (req, res) => {
+    try {
+        const posters = await Poster.find().sort({ date: -1 });
+        res.json(posters);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('server error');
+    }
+});
+
+// @route   GET api/posters/:id
+// @desc    Get poster by ID
+// @access  Public
+router.get('/:id', async (req, res) => {
+    try {
+        const poster = await Poster.findById(req.params.id);
+        
+        if (!poster) {
+            return res.status(404).json({ msg: "Poster not found" });
+        }
+        
+        res.json(poster);
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') {
+            return res.status(404).json({ msg: "Poster not found" });
+        }
+        res.status(500).send('server error');
+    }
+});
+
+// @route   DELETE api/posters/:id
+// @desc    delete a poster
+// @access  Private
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        const poster = await Poster.findById(req.params.id);
+        
+        if (!poster) {
+            return res.status(404).json({ msg: "Poster not found" });
+        }
+
+        if (poster.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: "User not authorized" });
+        }
+
+        await poster.remove();
+        
+        res.json({ msg: "Poster removed" });
+    } catch (err) {
+        console.error(err.message);
+        if (err.kind === 'ObjectId') {
+            return res.status(404).json({ msg: "Poster not found" });
+        }
+        res.status(500).send('server error');
+    }
+});
 
 module.exports = router;
