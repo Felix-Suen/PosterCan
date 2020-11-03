@@ -108,4 +108,53 @@ router.delete('/:id', auth, async (req, res) => {
     }
 });
 
+// @route   PUT api/posters/like/:id
+// @desc    Like a poster
+// @access  Private
+router.put('/like/:id', auth, async (req, res) => {
+    try {
+        const poster = await Poster.findById(req.params.id);
+
+        // Check if the poster has already been liked
+        if (poster.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+            return res.status(400).json({ msg: 'Poster Already Liked' });
+        }
+
+        poster.likes.unshift({ user: req.user.id });
+
+        await poster.save();
+
+        res.json(poster.likes);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// @route   PUT api/posters/unlike/:id
+// @desc    unlike a poster
+// @access  Private
+router.put('/unlike/:id', auth, async (req, res) => {
+    try {
+        const poster = await Poster.findById(req.params.id);
+
+        // Check if the poster has already been liked
+        if (poster.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+            return res.status(400).json({ msg: 'Poster has not yet been liked' });
+        }
+
+        // Get remove index
+        const removeIndex = poster.likes.map(like => like.user.toString()).indexOf(req.user.id);
+
+        poster.likes.splice(removeIndex, 1);
+
+        await poster.save();
+
+        res.json(poster.likes);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 module.exports = router;
