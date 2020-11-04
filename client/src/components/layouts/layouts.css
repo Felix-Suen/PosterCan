@@ -1,8 +1,20 @@
 .navbar,
 .navbar-default {
-    background-image: linear-gradient(to bottom,#2c4053 0,#2c4053 100%) !important;
+    background-image: linear-gradient(to bottom,lightblue 0, lightblue 100%) !important;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.snow {
+    height: 80vh;
+    background-image: linear-gradient(to bottom,lightblue 0, white 100%) !important;
+}
+
+.snow-text {
+    text-align: center;
+    padding-top: 10vh;
+    color: white;
+}
+
