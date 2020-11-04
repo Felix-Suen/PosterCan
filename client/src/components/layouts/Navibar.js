@@ -8,7 +8,7 @@ const Navibar = () => {
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-                <Navbar.Brand href="#home" style={{fontSize: '20px', margin: 0, padding: 0}}>
+                <Navbar.Brand href="/" style={{fontSize: '20px', margin: 0, padding: 0}}>
                     <img
                         alt=""
                         src={logo}
@@ -21,8 +21,8 @@ const Navibar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"></Nav>
                     <Nav style={{fontSize: '18px'}}>
-                        <Nav.Link href="#deets">Login</Nav.Link>
-                        <Nav.Link href="#deets">Sign up</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/register">Sign up</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
