@@ -1,15 +1,15 @@
 .navbar,
 .navbar-default {
-    background-image: linear-gradient(to bottom,lightblue 0, lightblue 100%) !important;
+    background-image: linear-gradient(to bottom,#fbcacd 0, #fbcacd 100%) !important;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 0;
     padding-bottom: 0;
+    display: flex;
 }
 
 .snow {
-    height: 80vh;
-    background-image: linear-gradient(to bottom,lightblue 0, white 100%) !important;
+    height: 100vh;
 }
 
 .snow-text {

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Snowfall from 'react-snowfall';
 
 const Landing = () => {
@@ -6,7 +6,7 @@ const Landing = () => {
         <div className="snow">
             <Snowfall
                 snowflakeCount={50}
-                color="red"
+                color="white"
             />
             <div className="snow-text">
                 <h1>Posters of Vancouver</h1>

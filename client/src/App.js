@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Fragment } from 'react';
+import React from 'react';
 import Navibar from './components/layouts/Navibar';
 import Landing from './components/layouts/Landing';
 import Register from './components/auth/Register';
@@ -9,16 +9,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const App = () => {
     return (
         <Router>
-            <Fragment>
+            <div style={{ backgroundImage: `url(https://wallpapercave.com/wp/wp5121842.jpg)` }}>
                 <Navibar />
                 <Route exact path='/' component={Landing} />
-                <section className="container">
+                <section>
                     <Switch>
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
                     </Switch>
                 </section>
-            </Fragment>
+            </div>
         </Router>
     );
 };

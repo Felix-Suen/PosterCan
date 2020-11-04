@@ -12,6 +12,7 @@
   "author": "Felix Suen",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.3",
     "config": "^3.3.2",
