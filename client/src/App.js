@@ -21,6 +21,7 @@ const App = () => {
                     <Navibar />
                     <Route exact path="/" component={Landing} />
                     <section>
+
                         <Switch>
                             <Route
                                 exact
