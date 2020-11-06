@@ -23,3 +23,9 @@
     background-image: radial-gradient(circle, 	#41415b 0%, #453743 100%);
     width: 100%;
 }
+
+.card-container {
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 5vh;
+}
