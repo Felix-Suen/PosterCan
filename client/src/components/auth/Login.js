@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import '../../App.css';
+import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Alert from '../layouts/Alert';
+import { Redirect } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -18,7 +23,11 @@ const Login = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        console.log(formData);
+        login(email, password);
+    }
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
     }
 
     return (
@@ -34,7 +43,7 @@ const Login = () => {
                             name="email"
                             value={email}
                             onChange={(e) => onChange(e)}
-                            required
+                            
                         />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -49,9 +58,11 @@ const Login = () => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => onChange(e)}
-                            required
+                            
                         />
                     </Form.Group>
+
+                    <Alert />
 
                     <Button variant="primary" type="submit">
                         Login
@@ -62,4 +73,13 @@ const Login = () => {
     );
 };
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+}
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
