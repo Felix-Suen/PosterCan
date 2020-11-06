@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../img/PosterCanPlain.svg';
-import './layouts.css'
+import './layouts.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
-const Navibar = () => {
+const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
+    const authLinks = (
+        <Nav style={{fontSize: '18px'}}>
+            <a onClick={logout}>Log out</a>
+        </Nav>
+    );
+
+    const guestLinks = (
+        <Nav style={{fontSize: '18px'}}>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <Nav.Link href="/register">Sign up</Nav.Link>
+                    </Nav>
+    );
+    
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -20,14 +36,20 @@ const Navibar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"></Nav>
-                    <Nav style={{fontSize: '18px'}}>
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link href="/register">Sign up</Nav.Link>
-                    </Nav>
+                    { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }
                 </Navbar.Collapse>
             </Navbar>
         </div>
     );
 };
 
-export default Navibar;
+Navibar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navibar);
