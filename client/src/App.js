@@ -7,6 +7,7 @@ import Login from './components/auth/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
+import PrivateRoute from './components/routing/PrivateRoute';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
