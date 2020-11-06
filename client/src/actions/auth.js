@@ -7,9 +7,10 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
-    LOGOUT
+    LOGOUT,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
+import { getPosters } from './poster.js';
 
 //load User
 export const loadUser = () => async (dispatch) => {
@@ -20,11 +21,16 @@ export const loadUser = () => async (dispatch) => {
     try {
         const res = await axios.get('/api/auth');
 
+        dispatch(getPosters());
+
         dispatch({
             type: USER_LOADED,
             payload: res.data,
         });
+        
     } catch (err) {
+        dispatch(getPosters());
+
         dispatch({
             type: AUTH_ERROR,
         });

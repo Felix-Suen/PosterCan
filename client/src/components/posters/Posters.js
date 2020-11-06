@@ -11,9 +11,7 @@ const Posters = ({
     poster: { posters, loading }
 }) => {
 
-    useEffect(() => {
-        getPosters();
-    }, [getPosters]);
+
 
     return loading ? (
         <Spinner />
