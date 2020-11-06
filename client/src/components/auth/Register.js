@@ -3,10 +3,11 @@ import { Form, Button } from 'react-bootstrap';
 import '../../App.css';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import Alert from '../layouts/Alert';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -22,19 +23,19 @@ const Register = ({ setAlert }) => {
             [e.target.name]: e.target.value,
         });
 
-    const onSubmit = async e => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
             setAlert('Password do not match', 'danger');
         } else {
-            console.log('Success');
+            register({ name, email, password });
         }
-    }
+    };
 
     return (
         <div className="snow">
             <div className="loginForm">
-                <Form onSubmit={e => onSubmit(e)}>
+                <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
                         <Form.Control
@@ -43,7 +44,6 @@ const Register = ({ setAlert }) => {
                             name="name"
                             value={name}
                             onChange={(e) => onChange(e)}
-                            required
                         />
                     </Form.Group>
 
@@ -55,7 +55,6 @@ const Register = ({ setAlert }) => {
                             name="email"
                             value={email}
                             onChange={(e) => onChange(e)}
-                            required
                         />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -70,7 +69,6 @@ const Register = ({ setAlert }) => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => onChange(e)}
-                            required
                         />
                     </Form.Group>
 
@@ -82,7 +80,6 @@ const Register = ({ setAlert }) => {
                             placeholder="Password2"
                             value={password2}
                             onChange={(e) => onChange(e)}
-                            required
                         />
                     </Form.Group>
 
@@ -91,8 +88,6 @@ const Register = ({ setAlert }) => {
                     <Button variant="primary" type="submit">
                         Sign up!
                     </Button>
-
-                    
                 </Form>
             </div>
         </div>
@@ -101,6 +96,7 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
-}
+    register: PropTypes.func.isRequired,
+};
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
