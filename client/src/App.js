@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
+import img from './img/webcropped.jpg';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -26,7 +27,7 @@ const App = () => {
             <Router>
                 <div
                     style={{
-                        backgroundImage: `url(https://wallpapercave.com/wp/wp5121842.jpg)`,
+                        backgroundImage: `url(${img})`,
                     }}
                 >
                     <Navibar />
