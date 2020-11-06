@@ -103,5 +103,6 @@ export const login = (email, password) => async (dispatch) => {
 
 // Log out
 export const logout = () => dispatch => {
+    dispatch(getPosters());
     dispatch({ type: LOGOUT });
 };

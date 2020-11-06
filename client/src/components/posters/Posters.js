@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPosters } from '../../actions/poster';
 import Spinner from '../layouts/Spinner';
 import '../layouts/layouts.css';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 
 const Posters = ({
-    getPosters,
     poster: { posters, loading }
 }) => {
-
-
 
     return loading ? (
         <Spinner />
@@ -52,7 +48,6 @@ const Posters = ({
 };
 
 Posters.propTypes = {
-    getPosters: PropTypes.func.isRequired,
     poster: PropTypes.object.isRequired,
 };
 
@@ -60,4 +55,4 @@ const mapStateToProps = (state) => ({
     poster: state.poster,
 });
 
-export default connect(mapStateToProps, { getPosters })(Posters);
+export default connect(mapStateToProps)(Posters);
