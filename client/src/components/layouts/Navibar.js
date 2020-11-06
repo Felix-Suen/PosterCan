@@ -10,7 +10,7 @@ import { logout } from '../../actions/auth';
 const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
         <Nav style={{fontSize: '18px'}}>
-            <a onClick={logout}>Log out</a>
+            <Nav.Link onClick={logout}>Log out</Nav.Link>
         </Nav>
     );
 

@@ -16,6 +16,7 @@ router.post(
         [
             check('images', 'image is required').isArray(1, 5),
             check('description', 'Enter description').notEmpty(),
+            check('title', 'Title is required').notEmpty()
         ],
     ],
     async (req, res) => {
@@ -30,6 +31,7 @@ router.post(
             if (user.admin) {
                 const newPoster = new Poster({
                     images: req.body.images,
+                    title: req.body.title,
                     description: req.body.description,
                     user: req.user.id,
                 });
