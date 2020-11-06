@@ -6,7 +6,7 @@ const Landing = () => {
     return (
         <div>
             <div className="snow">
-                <Snowfall snowflakeCount={50} color="white" />
+                <Snowfall snowflakeCount={100} color="white" />
                 <div className="snow-text">
                     <h1>
                         Posters of Vancouver

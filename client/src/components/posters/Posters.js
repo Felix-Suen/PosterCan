@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 import { getPosters } from '../../actions/poster';
 import Spinner from '../layouts/Spinner';
 import '../layouts/layouts.css';
-import { Card, Button, CardDeck, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 
-const Posters = ({ getPosters, poster: { posters, loading } }) => {
+const Posters = ({
+    getPosters,
+    poster: { posters, loading }
+}) => {
+
     useEffect(() => {
         getPosters();
     }, [getPosters]);
@@ -21,20 +25,25 @@ const Posters = ({ getPosters, poster: { posters, loading } }) => {
                         {posters &&
                             posters.map((poster) => (
                                 <Col sm="4">
-                                <Card key={poster.id} style={{ marginBottom: '30px' }}>
-                                    <Card.Img
-                                        variant="top"
-                                        src={poster.images[0]}
-                                    />
-                                    <Card.Body>
-                                        <Card.Title>{poster.title}</Card.Title>
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        <small className="text-muted">
-                                            {poster.date}
-                                        </small>
-                                    </Card.Footer>
-                                </Card>
+                                    <Card
+                                        key={poster.id}
+                                        style={{ marginBottom: '30px' }}
+                                    >
+                                        <Card.Img
+                                            variant="top"
+                                            src={poster.images[0]}
+                                        />
+                                        <Card.Body>
+                                            <Card.Title>
+                                                {poster.title}
+                                            </Card.Title>
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <small className="text-muted">
+                                                {poster.date}
+                                            </small>
+                                        </Card.Footer>
+                                    </Card>
                                 </Col>
                             ))}
                     </Row>

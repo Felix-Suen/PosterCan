@@ -9,11 +9,12 @@ import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import img from './img/webcropped.jpg';
+import Posters from './components/posters/Posters';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
 
-if(localStorage.token) {
+if (localStorage.token) {
     setAuthToken(localStorage.token);
 }
 
@@ -33,7 +34,6 @@ const App = () => {
                     <Navibar />
                     <Route exact path="/" component={Landing} />
                     <section>
-
                         <Switch>
                             <Route
                                 exact
