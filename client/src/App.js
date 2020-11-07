@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
-import img from './img/webcropped.jpg';
+import img from './img/background.png';
 import Posters from './components/posters/Posters';
 // Redux
 import { Provider } from 'react-redux';

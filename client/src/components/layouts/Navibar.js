@@ -23,7 +23,7 @@ const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand
                     href="/"
                     style={{ fontSize: '20px', margin: 0, padding: 0 }}

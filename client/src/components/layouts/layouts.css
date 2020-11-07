@@ -1,6 +1,6 @@
 .navbar,
 .navbar-default {
-    background-image: linear-gradient(to bottom,#fcd8d8 0, #fcd8d0 100%) !important;
+    background-image: linear-gradient(to bottom,#33272a 0, #33272a 100%) !important;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 0;
@@ -9,7 +9,7 @@
 }
 
 .snow {
-    position: relative
+    height: 90vh;
 }
 
 .snow-text {
@@ -20,7 +20,7 @@
 
 .posters {
     position: absolute;
-    background-image: radial-gradient(circle, 	#41415b 0%, #453743 100%);
+    background-image: radial-gradient(circle,#121d31 0%, #121d31 100%);
     width: 100%;
 }
 
