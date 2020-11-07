@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import logo from '../../img/PosterCanPlain.svg';
+import logo from '../../img/logoPlain.svg';
 import './layouts.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -31,8 +31,8 @@ const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
                     <img
                         alt=""
                         src={logo}
-                        width="80"
-                        height="80"
+                        width="70"
+                        height="70"
                         className="d-inline-block"
                     />{' '}
                     PosterCan
