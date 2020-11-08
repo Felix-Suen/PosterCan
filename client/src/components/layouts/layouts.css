@@ -55,6 +55,10 @@
     width: 100%;
 }
 
+.cardImg:hover {
+    border: 2px white solid;
+}
+
 @media only screen and (max-width: 600px) {
     .loginForm {
         position: absolute;

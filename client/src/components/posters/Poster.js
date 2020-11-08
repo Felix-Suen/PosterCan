@@ -8,7 +8,7 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faComments } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 
 const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
@@ -46,11 +46,23 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
                                                         0 && (
                                                         <span>
                                                             {' '}
-                                                            {poster.likes.length}
+                                                            {
+                                                                poster.likes
+                                                                    .length
+                                                            }
                                                         </span>
                                                     )}
                                                 </span>{' '}
                                             </span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="btn btn-light"
+                                            onClick={()=> window.open(poster.images[0], "_blank")}
+                                        >   
+                                            <FontAwesomeIcon
+                                                icon={faDownload}
+                                            /> Download
                                         </button>
                                     </Card.Text>
                                 </Card.Body>

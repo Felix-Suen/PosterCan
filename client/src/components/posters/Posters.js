@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 import Footer from '../layouts/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { addLike } from '../../actions/poster';
 
-const Posters = ({ poster: { posters, loading } }) => {
+const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => {
     return loading ? (
         <Spinner />
     ) : (
@@ -28,6 +31,7 @@ const Posters = ({ poster: { posters, loading } }) => {
                                                 <Card.Img
                                                     variant="top"
                                                     src={poster.images[0]}
+                                                    className="cardImg"
                                                 />
                                             </Link>
 
@@ -36,9 +40,53 @@ const Posters = ({ poster: { posters, loading } }) => {
                                                     {poster.title}
                                                 </Card.Title>
                                                 <Card.Text>
-                                                    <Moment format="YYYY/MM/DD">
-                                                        {poster.date}
-                                                    </Moment>
+                                                    <Card.Text>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-light"
+                                                            onClick={() => !isAuthenticated ? (window.location.href='/login') : addLike(poster._id)
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faHeart}
+                                                            />
+                                                            <span>
+                                                                <span>
+                                                                    {poster
+                                                                        .likes
+                                                                        .length >
+                                                                        0 && (
+                                                                        <span>
+                                                                            {' '}
+                                                                            {
+                                                                                poster
+                                                                                    .likes
+                                                                                    .length
+                                                                            }
+                                                                        </span>
+                                                                    )}
+                                                                </span>{' '}
+                                                            </span>
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-light"
+                                                            onClick={() =>
+                                                                window.open(
+                                                                    poster
+                                                                        .images[0],
+                                                                    '_blank'
+                                                                )
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faDownload
+                                                                }
+                                                            />{' '}
+                                                            Download
+                                                        </button>
+                                                    </Card.Text>
                                                 </Card.Text>
                                             </Card.Body>
                                         </Card>
@@ -55,10 +103,12 @@ const Posters = ({ poster: { posters, loading } }) => {
 
 Posters.propTypes = {
     poster: PropTypes.object.isRequired,
+    addLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(Posters);
+export default connect(mapStateToProps, { addLike })(Posters);

@@ -34,6 +34,7 @@ export const addLike = posterId => async dispatch => {
             payload: { posterId, likes: res.data }
         })
         dispatch(getPoster(posterId));
+        dispatch(getPosters());
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,
