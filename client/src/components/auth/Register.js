@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../../App.css';
+import '../layouts/layouts.css';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
@@ -40,6 +40,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     return (
         <div className="snow">
             <div className="loginForm">
+                <h2 style={{ textAlign: 'center' }}>Register</h2>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
@@ -61,9 +62,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                             value={email}
                             onChange={(e) => onChange(e)}
                         />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
@@ -82,7 +80,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         <Form.Control
                             type="password"
                             name="password2"
-                            placeholder="Password2"
+                            placeholder="Confirm Password"
                             value={password2}
                             onChange={(e) => onChange(e)}
                         />

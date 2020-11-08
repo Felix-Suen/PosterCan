@@ -1,6 +1,7 @@
 import React from 'react';
 import Snowfall from 'react-snowfall';
 import Posters from '../posters/Posters';
+import './layouts.css';
 
 const Landing = () => {
     return (

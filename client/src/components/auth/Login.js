@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import '../../App.css';
+import '../layouts/layouts.css';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,20 +21,20 @@ const Login = ({ login, isAuthenticated }) => {
             [e.target.name]: e.target.value,
         });
 
-    const onSubmit = async e => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         login(email, password);
-    }
+    };
 
     if (isAuthenticated) {
-        return <Redirect to="/" />
+        return <Redirect to="/" />;
     }
 
     return (
         <div className="snow">
             <div className="loginForm">
-                <Form onSubmit={e => onSubmit(e)}>
-
+                <h2 style={{ textAlign: 'center' }}>Login</h2>
+                <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
@@ -43,11 +43,7 @@ const Login = ({ login, isAuthenticated }) => {
                             name="email"
                             value={email}
                             onChange={(e) => onChange(e)}
-                            
                         />
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
@@ -58,7 +54,6 @@ const Login = ({ login, isAuthenticated }) => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => onChange(e)}
-                            
                         />
                     </Form.Group>
 
@@ -76,10 +71,10 @@ const Login = ({ login, isAuthenticated }) => {
 Login.propTypes = {
     login: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool,
-}
+};
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);

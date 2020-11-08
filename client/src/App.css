@@ -4,17 +4,3 @@ body,
 #app > div {
     height: 100%;
 }
-
-.loginForm {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    width: 30vw;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-}
-
-.snow {
-    height: 100vh;
-    opacity: 1.5;
-}
