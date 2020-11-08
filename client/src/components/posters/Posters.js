@@ -18,7 +18,7 @@ const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => 
         <div className="posters">
             <div className="card-container">
                 <div className="cards">
-                    <Container>
+                    <Container fluid="md">
                         <Row>
                             {posters &&
                                 posters.map((poster) => (

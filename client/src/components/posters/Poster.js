@@ -19,51 +19,72 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
     return (
         <div className="snow">
             <div className="card-container">
-                <Container>
+                <Container fluid="md">
                     {poster && !loading && (
-                        <Col sm={4}>
+                        <Col md="auto">
                             <Card
                                 key={poster.id}
                                 style={{ marginBottom: '30px' }}
                             >
-                                <Card.Img
-                                    variant="top"
-                                    src={poster.images[0]}
-                                />
+                                <Container>
+                                    <Row>
+                                        {poster.images.map((image) => (
+                                            <Col style={{ padding: 3 }}>
+                                                <Card.Img
+                                                    variant="top"
+                                                    src={image}
+                                                />
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                </Container>
 
                                 <Card.Body>
                                     <Card.Title>{poster.title}</Card.Title>
                                     <Card.Text>
-                                        <button
-                                            type="button"
-                                            className="btn btn-light"
-                                            onClick={() => addLike(poster._id)}
-                                        >
-                                            <FontAwesomeIcon icon={faHeart} />
-                                            <span>
+                                        {poster.description}
+                                        <div style={{ textAlign: 'right' }}>
+                                            <button
+                                                type="button"
+                                                className="btn btn-light"
+                                                onClick={() =>
+                                                    addLike(poster._id)
+                                                }
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faHeart}
+                                                />
                                                 <span>
-                                                    {poster.likes.length >
-                                                        0 && (
-                                                        <span>
-                                                            {' '}
-                                                            {
-                                                                poster.likes
-                                                                    .length
-                                                            }
-                                                        </span>
-                                                    )}
-                                                </span>{' '}
-                                            </span>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-light"
-                                            onClick={()=> window.open(poster.images[0], "_blank")}
-                                        >   
-                                            <FontAwesomeIcon
-                                                icon={faDownload}
-                                            /> Download
-                                        </button>
+                                                    <span>
+                                                        {poster.likes.length >
+                                                            0 && (
+                                                            <span>
+                                                                {' '}
+                                                                {
+                                                                    poster.likes
+                                                                        .length
+                                                                }
+                                                            </span>
+                                                        )}
+                                                    </span>{' '}
+                                                </span>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="btn btn-light"
+                                                onClick={() =>
+                                                    window.open(
+                                                        poster.images[0],
+                                                        '_blank'
+                                                    )
+                                                }
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faDownload}
+                                                />{' '}
+                                                Download
+                                            </button>
+                                        </div>
                                     </Card.Text>
                                 </Card.Body>
 
