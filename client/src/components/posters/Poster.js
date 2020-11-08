@@ -1,12 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Spinner from '../layouts/Spinner';
 import { getPoster } from '../../actions/poster';
 import '../layouts/layouts.css';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
-import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
