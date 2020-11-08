@@ -29,6 +29,11 @@
 }
 
 .card-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cards {
     width: 70%;
     margin: 0 auto;
     padding-bottom: 5vh;
@@ -42,6 +47,12 @@
     transform: translate(-50%, -50%);
     padding: 10px;
     color: white;
+}
+
+.footer {
+    padding: 1rem;
+    background-color: rgb(235, 195, 64);
+    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
