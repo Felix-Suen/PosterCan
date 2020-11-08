@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComments } from '@fortawesome/free-solid-svg-icons';
 import { addLike, removeLike } from '../../actions/poster';
 
-const Poster = ({ getPoster, poster: { poster, loading }, match }) => {
+const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
     useEffect(() => {
         getPoster(match.params.id);
     }, [getPoster]);
@@ -37,7 +37,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match }) => {
                                         <button
                                             type="button"
                                             className="btn btn-light"
-                                            onClick={(e) => addLike()}
+                                            onClick={() => addLike(poster._id)}
                                         >
                                             <FontAwesomeIcon icon={faHeart} />
                                             <span>
@@ -71,10 +71,11 @@ const Poster = ({ getPoster, poster: { poster, loading }, match }) => {
 
 Poster.propTypes = {
     getPoster: PropTypes.func.isRequired,
+    addLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
 });
 
-export default connect(mapStateToProps, { getPoster })(Poster);
+export default connect(mapStateToProps, { getPoster, addLike })(Poster);

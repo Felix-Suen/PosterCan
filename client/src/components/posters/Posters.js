@@ -51,8 +51,6 @@ const Posters = ({ poster: { posters, loading } }) => {
 
 Posters.propTypes = {
     poster: PropTypes.object.isRequired,
-    addLike: PropTypes.func.isRequired,
-    removeLike: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
