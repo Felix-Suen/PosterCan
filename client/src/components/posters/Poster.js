@@ -9,7 +9,7 @@ import Moment from 'react-moment';
 import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComments } from '@fortawesome/free-solid-svg-icons';
-import { addLike, removeLike } from '../../actions/poster';
+import { addLike } from '../../actions/poster';
 
 const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
     useEffect(() => {
@@ -20,7 +20,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
         <div className="snow">
             <div className="card-container">
                 <Container>
-                    {poster && (
+                    {poster && !loading && (
                         <Col sm={4}>
                             <Card
                                 key={poster.id}

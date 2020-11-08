@@ -33,23 +33,7 @@ export const addLike = posterId => async dispatch => {
             type: UPDATE_LIKES,
             payload: { posterId, likes: res.data }
         })
-    } catch (err) {
-        dispatch({
-            type: POSTER_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        })
-    }
-}
-
-// remove like
-export const removeLike = posterId => async dispatch => {
-    try {
-        const res = await axios.put(`/api/posters/unlike/${posterId}`);
-
-        dispatch({
-            type: UPDATE_LIKES,
-            payload: { posterId, likes: res.data }
-        })
+        dispatch(getPoster(posterId));
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,

@@ -122,10 +122,15 @@ router.put('/like/:id', auth, async (req, res) => {
             poster.likes.filter((like) => like.user.toString() === req.user.id)
                 .length > 0
         ) {
-            return res.status(400).json({ msg: 'Poster Already Liked' });
-        }
+            // return res.status(400).json({ msg: 'Poster Already Liked' });
+            const removeIndex = poster.likes
+            .map((like) => like.user.toString())
+            .indexOf(req.user.id);
 
-        poster.likes.unshift({ user: req.user.id });
+            poster.likes.splice(removeIndex, 1);
+        } else {
+            poster.likes.unshift({ user: req.user.id });
+        }
 
         await poster.save();
 
