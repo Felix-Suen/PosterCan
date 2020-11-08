@@ -10,6 +10,7 @@ import setAuthToken from './utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import img from './img/background.png';
 import Posters from './components/posters/Posters';
+import Poster from './components/posters/Poster';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -41,6 +42,7 @@ const App = () => {
                                 component={Register}
                             />
                             <Route exact path="/login" component={Login} />
+                            <PrivateRoute exact path="/posters/:id" component={Poster} />
                         </Switch>
                     </section>
                 </div>
