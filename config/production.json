@@ -1,4 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://Felix:WRwoMgTA56cJ7oPg@cluster0.xutkq.mongodb.net/PosterCan?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
-}
