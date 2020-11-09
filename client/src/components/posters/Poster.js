@@ -15,7 +15,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
     }, [getPoster]);
 
     return (
-        <div className="snow">
+        <div className="poster">
             <div className="card-container">
                 <Container fluid="md">
                     {poster && !loading && (
@@ -27,7 +27,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
                                 <Container>
                                     <Row>
                                         {poster.images.map((image) => (
-                                            <Col style={{ padding: 3 }}>
+                                            <Col sm={true} style={{ padding: 3 }}>
                                                 <Card.Img
                                                     variant="top"
                                                     src={image}
