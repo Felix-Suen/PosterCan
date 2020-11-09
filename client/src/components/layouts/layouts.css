@@ -16,6 +16,15 @@
     height: 100vh;
 }
 
+.background {
+    width: 100%;
+    height: auto;
+    background-image: url('../../img/city1080.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
 .snow-text {
     text-align: center;
     padding-top: 10vh;
@@ -71,6 +80,7 @@
 
 .posters {
     position: absolute;
+    padding-top: 5vh;
     background-image: linear-gradient( white 0%, #fcedda 100%);
     width: 100%;
 }
@@ -94,7 +104,7 @@
 .loginForm {
     position: absolute;
     border-radius: 10px;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.95);
     left: 50%;
     top: 40%;
     width: 30vw;

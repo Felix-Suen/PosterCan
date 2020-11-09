@@ -8,6 +8,7 @@ import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
+import Footer from '../layouts/Footer';
 
 const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
     useEffect(() => {
@@ -96,6 +97,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
                     )}
                 </Container>
             </div>
+            <Footer />
         </div>
     );
 };

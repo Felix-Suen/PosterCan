@@ -26,11 +26,7 @@ const App = () => {
     return (
         <Provider store={store}>
             <Router>
-                <div
-                    style={{
-                        backgroundImage: `url(${img})`,
-                    }}
-                >
+                <div className="background">
                     <Navibar />
                     <Route exact path="/" component={Landing} />
                     <section>
