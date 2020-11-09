@@ -9,9 +9,13 @@ const Landing = () => {
             <div className="snow">
                 <Snowfall snowflakeCount={100} color="#ffebeb" />
                 <div className="snow-text">
-                    <h1>
-                        Posters of Vancouver
-                    </h1>
+                    <h1>Posters of Vancouver</h1>
+                    <p>Notice the Overlooked</p>
+                    <div class="box">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
             <Posters />
