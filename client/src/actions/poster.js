@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setAlert } from './alert';
 import {
     GET_POSTERS,
     POSTER_ERROR,

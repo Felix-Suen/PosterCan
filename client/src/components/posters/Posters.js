@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layouts/Spinner';
 import '../layouts/layouts.css';
 import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
-import Moment from 'react-moment';
 import Footer from '../layouts/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';

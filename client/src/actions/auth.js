@@ -10,7 +10,7 @@ import {
     LOGOUT,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
-import { getPosters, getPoster } from './poster.js';
+import { getPosters } from './poster.js';
 
 //load User
 export const loadUser = () => async (dispatch) => {

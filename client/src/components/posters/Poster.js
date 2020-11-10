@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPoster } from '../../actions/poster';
@@ -13,7 +13,7 @@ import Footer from '../layouts/Footer';
 const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuthenticated }) => {
     useEffect(() => {
         getPoster(match.params.id);
-    }, [getPoster]);
+    }, [getPoster, match.params.id]);
 
     return (
         <div className="poster">

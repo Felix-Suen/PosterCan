@@ -7,8 +7,7 @@ import Login from './components/auth/Login';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
-import PrivateRoute from './components/routing/PrivateRoute';
-import img from './img/city.png';
+// import PrivateRoute from './components/routing/PrivateRoute';
 import Poster from './components/posters/Poster';
 // Redux
 import { Provider } from 'react-redux';
