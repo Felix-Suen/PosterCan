@@ -6,11 +6,20 @@ import './layouts.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import { useHistory } from 'react-router-dom';
 
 const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
+    const history = useHistory();
+
+    const logoutRoute = () => { 
+        let path = `/`; 
+        logout();
+        history.push(path);
+      }
+
     const authLinks = (
         <Nav style={{ fontSize: '18px' }}>
-            <Nav.Link onClick={logout}>Log out</Nav.Link>
+            <Nav.Link onClick={logoutRoute}>Log out</Nav.Link>
         </Nav>
     );
 
@@ -31,8 +40,8 @@ const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
                     <img
                         alt=""
                         src={logo}
-                        width="60"
-                        height="60"
+                        width="40"
+                        height="40"
                         className="d-inline-block"
                     />{' '}
                     PosterCan
