@@ -37,7 +37,7 @@ const App = () => {
                                 component={Register}
                             />
                             <Route exact path="/login" component={Login} />
-                            <PrivateRoute exact path="/posters/:id" component={Poster} />
+                            <Route exact path="/posters/:id" component={Poster} />
                         </Switch>
                     </section>
                 </div>

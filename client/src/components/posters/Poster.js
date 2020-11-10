@@ -10,7 +10,7 @@ import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 import Footer from '../layouts/Footer';
 
-const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
+const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuthenticated }) => {
     useEffect(() => {
         getPoster(match.params.id);
     }, [getPoster]);
@@ -46,9 +46,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike }) => {
                                             <button
                                                 type="button"
                                                 className="btn btn-light"
-                                                onClick={() =>
-                                                    addLike(poster._id)
-                                                }
+                                                onClick={() => !isAuthenticated ? (window.location.href='/login') : addLike(poster._id)}
                                             >
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
@@ -109,6 +107,7 @@ Poster.propTypes = {
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getPoster, addLike })(Poster);
