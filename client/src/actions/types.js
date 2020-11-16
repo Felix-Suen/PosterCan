@@ -12,3 +12,6 @@ export const GET_POSTERS = 'GET_POSTERS';
 export const GET_POSTER = 'GET_POSTER';
 export const POSTER_ERROR = 'POSTER_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+
+export const DELETE_POSTER = 'DELETE_POSTER';
+export const ADD_POSTER = 'ADD_POSTER';

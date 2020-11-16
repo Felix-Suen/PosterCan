@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { addLike } from '../../actions/poster';
+import { faHeart, faDownload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { addLike, deletePoster } from '../../actions/poster';
 
 const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => {
     return loading ? (

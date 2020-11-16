@@ -40,8 +40,8 @@ const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
                     <img
                         alt=""
                         src={logo}
-                        width="50"
-                        height="50"
+                        width="60"
+                        height="60"
                         className="d-inline-block"
                     />{' '}
                     PosterCan

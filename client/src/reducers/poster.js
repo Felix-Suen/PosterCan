@@ -3,6 +3,7 @@ import {
     POSTER_ERROR,
     UPDATE_LIKES,
     GET_POSTER,
+    DELETE_POSTER
 } from '../actions/types';
 
 const initialState = {
@@ -28,6 +29,12 @@ export default function (state = initialState, action) {
                 poster: payload,
                 loading: false,
             };
+        case DELETE_POSTER:
+            return {
+                ...state,
+                posters: state.posters.filter(poster => poster._id !== payload),
+                loading: false
+            }
         case POSTER_ERROR:
             return {
                 ...state,

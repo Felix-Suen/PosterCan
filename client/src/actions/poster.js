@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
     GET_POSTERS,
     POSTER_ERROR,
     UPDATE_LIKES,
-    GET_POSTER
+    GET_POSTER,
+    DELETE_POSTER
 } from './types';
 
 // Get posters
@@ -58,3 +60,21 @@ export const getPoster = (id) => async dispatch => {
         })
     }
 }
+
+// delete poster
+export const deletePoster = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/posters/${id}`);
+        dispatch({
+            type: DELETE_POSTER,
+            payload: id,
+        })
+
+        dispatch(setAlert('Poster Removed', 'success'));
+    } catch (err) {
+        dispatch({
+            type: POSTER_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+} 
