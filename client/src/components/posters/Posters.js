@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layouts/Spinner';
@@ -7,10 +7,19 @@ import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDownload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+    faHeart,
+    faDownload,
+    faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import { addLike, deletePoster } from '../../actions/poster';
 
-const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => {
+const Posters = ({
+    poster: { posters, loading },
+    addLike,
+    auth,
+    deletePoster,
+}) => {
     return loading ? (
         <Spinner />
     ) : (
@@ -43,7 +52,13 @@ const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => 
                                                         <button
                                                             type="button"
                                                             className="btn btn-light"
-                                                            onClick={() => !isAuthenticated ? (window.location.href='/login') : addLike(poster._id)
+                                                            onClick={() =>
+                                                                !auth.isAuthenticated
+                                                                    ? (window.location.href =
+                                                                          '/login')
+                                                                    : addLike(
+                                                                          poster._id
+                                                                      )
                                                             }
                                                         >
                                                             <FontAwesomeIcon
@@ -85,6 +100,23 @@ const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => 
                                                             />{' '}
                                                             Download
                                                         </button>
+                                                        {auth.isAuthenticated  && auth.user.admin && (
+                                                            <button
+                                                                type="button"
+                                                                className="btn btn-danger"
+                                                                onClick={() =>
+                                                                    deletePoster(
+                                                                        poster._id
+                                                                    )
+                                                                }
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faTrashAlt
+                                                                    }
+                                                                />
+                                                            </button>
+                                                        )}
                                                     </Card.Text>
                                                 </Card.Text>
                                             </Card.Body>
@@ -103,11 +135,12 @@ const Posters = ({ poster: { posters, loading }, addLike, isAuthenticated }) => 
 Posters.propTypes = {
     poster: PropTypes.object.isRequired,
     addLike: PropTypes.func.isRequired,
+    deletePoster: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
-    isAuthenticated: state.auth.isAuthenticated
+    auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike })(Posters);
+export default connect(mapStateToProps, { addLike, deletePoster })(Posters);
