@@ -14,7 +14,7 @@ router.post(
     [
         auth,
         [
-            check('images', 'image is required').isArray(1, 5),
+            check('images', 'image is required').isArray(1, 3),
             check('description', 'Enter description').notEmpty(),
             check('title', 'Title is required').notEmpty()
         ],

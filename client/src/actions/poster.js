@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alert';
 import {
     GET_POSTERS,
     POSTER_ERROR,
@@ -97,12 +98,12 @@ export const addPoster = formData => async dispatch => {
             type: ADD_POSTER,
             payload: res.data,
         })
-
-        dispatch(getPosters());
+        dispatch(setAlert("post created", "success"));
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         })
+        dispatch(setAlert(err.response.data.errors.msg, "danger"));
     }
 } 

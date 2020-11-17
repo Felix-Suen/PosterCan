@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPoster } from '../../actions/poster';
 import { Form, Button } from 'react-bootstrap';
+import Alert from '../layouts/Alert';
 
-const PosterForm = props => {
+const PosterForm = ({ addPoster }) => {
     const [formData, setFormData] = useState({
-        images: '',
+        images1: '',
+        images2: '',
+        images3: '',
         title: '',
         description: '',
     });
@@ -15,19 +18,17 @@ const PosterForm = props => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
-        });
+        }); 
 
-    const {
-        images,
-        title,
-        description,
-    } = formData;
+    const { images1, images2, images3, title, description } = formData;
+
+    const images = [images1, images2, images3];
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        addPoster(formData)
+        addPoster({ images, title, description });
     };
-    
+
     return (
         <div className="snow">
             <div className="loginForm">
@@ -38,22 +39,22 @@ const PosterForm = props => {
                         <Form.Control
                             type="text"
                             placeholder="Image 1"
-                            name="image 1"
-                            value={images[0]}
+                            name="images1"
+                            value={images1}
                             onChange={(e) => onChange(e)}
                         />
                         <Form.Control
                             type="text"
                             placeholder="Image 2"
-                            name="image 2"
-                            value={images[1]}
+                            name="images2"
+                            value={images2}
                             onChange={(e) => onChange(e)}
                         />
                         <Form.Control
                             type="text"
                             placeholder="Image 3"
-                            name="image 3"
-                            value={images[2]}
+                            name="images3"
+                            value={images3}
                             onChange={(e) => onChange(e)}
                         />
 
@@ -76,17 +77,19 @@ const PosterForm = props => {
                         />
                     </Form.Group>
 
+                    <Alert />
+
                     <Button variant="primary" type="submit">
                         Add Post
                     </Button>
                 </Form>
             </div>
         </div>
-    )
-}
+    );
+};
 
 PosterForm.propTypes = {
     addPoster: PropTypes.func.isRequired,
-}
+};
 
-export default connect(null, { addPoster })(PosterForm)
+export default connect(null, { addPoster })(PosterForm);
