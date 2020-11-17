@@ -100,7 +100,7 @@ const Posters = ({
                                                             />{' '}
                                                             Download
                                                         </button>
-                                                        {auth.isAuthenticated  && auth.user.admin && (
+                                                        {auth.isAuthenticated && auth.user.admin && (
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-danger"
