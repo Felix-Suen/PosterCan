@@ -15,7 +15,7 @@ const Navibar = ({ auth: { isAuthenticated, loading }, logout }) => {
         let path = `/`; 
         logout();
         history.push(path);
-      }
+    }
 
     const authLinks = (
         <Nav style={{ fontSize: '18px' }}>

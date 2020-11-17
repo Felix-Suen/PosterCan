@@ -98,12 +98,11 @@ export const addPoster = formData => async dispatch => {
             type: ADD_POSTER,
             payload: res.data,
         })
-        dispatch(setAlert("post created", "success"));
+        dispatch(getPosters());
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
         })
-        dispatch(setAlert(err.response.data.errors.msg, "danger"));
     }
 } 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPoster } from '../../actions/poster';
 import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import Alert from '../layouts/Alert';
 
 const PosterForm = ({ addPoster }) => {
@@ -14,19 +15,23 @@ const PosterForm = ({ addPoster }) => {
         description: '',
     });
 
+    const { images1, images2, images3, title, description } = formData;
+
+    const images = [images1, images2, images3];
+
     const onChange = (e) =>
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         }); 
 
-    const { images1, images2, images3, title, description } = formData;
-
-    const images = [images1, images2, images3];
+    const history = useHistory();
 
     const onSubmit = async (e) => {
         e.preventDefault();
         addPoster({ images, title, description });
+        let path = `/`; 
+        history.push(path);
     };
 
     return (
