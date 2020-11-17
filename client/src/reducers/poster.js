@@ -3,7 +3,8 @@ import {
     POSTER_ERROR,
     UPDATE_LIKES,
     GET_POSTER,
-    DELETE_POSTER
+    DELETE_POSTER,
+    ADD_POSTER
 } from '../actions/types';
 
 const initialState = {
@@ -22,6 +23,12 @@ export default function (state = initialState, action) {
                 ...state,
                 posters: payload,
                 loading: false,
+            };
+        case ADD_POSTER:
+            return {
+                ...state,
+                posters: [...state.posters, payload],
+                loading: false
             };
         case GET_POSTER:
             return {

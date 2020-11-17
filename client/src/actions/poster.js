@@ -4,7 +4,8 @@ import {
     POSTER_ERROR,
     UPDATE_LIKES,
     GET_POSTER,
-    DELETE_POSTER
+    DELETE_POSTER,
+    ADD_POSTER
 } from './types';
 
 // Get posters
@@ -71,6 +72,30 @@ export const deletePoster = id => async dispatch => {
         dispatch({
             type: DELETE_POSTER,
             payload: id,
+        })
+
+        dispatch(getPosters());
+    } catch (err) {
+        dispatch({
+            type: POSTER_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+} 
+
+// add poster
+export const addPoster = formData => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    try {
+        const res = await axios.post(`/api/posters`, formData, config);
+        dispatch({
+            type: ADD_POSTER,
+            payload: res.data,
         })
 
         dispatch(getPosters());
