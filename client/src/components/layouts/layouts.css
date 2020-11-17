@@ -18,7 +18,7 @@
 
 .background {
     width: 100%;
-    height: auto;
+
     background-image: url('../../img/city1080.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -91,6 +91,7 @@
 
 .card-container {
     width: 100%;
+    height: 100%;
     margin: 0 auto;
 }
 
