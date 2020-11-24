@@ -10,7 +10,7 @@ import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 import Footer from '../layouts/Footer';
 import CommentForm from './CommentForm';
-import { post } from 'request';
+import CommentItem from './CommentItem';
 
 const Poster = ({
     getPoster,
@@ -52,9 +52,10 @@ const Poster = ({
                                 <Card.Body>
                                     <Card.Title>{poster.title}</Card.Title>
                                     <Card.Text>
-                                        (<Moment format="YYYY/MM/DD">
+                                        Posted on <Moment format="YYYY/MM/DD">
                                             {poster.date}
-                                        </Moment>){" "}
+                                        </Moment>
+                                        <br /><br />
                                         {poster.description}
                                         <div style={{ textAlign: 'right' }}>
                                             <button
@@ -103,8 +104,10 @@ const Poster = ({
                                         </div>
                                     </Card.Text>
                                 </Card.Body>
-
                                 <CommentForm poster={poster} />
+                                {poster.comments.map(comment => (
+                                    <CommentItem key={comment._id} comment={comment} posterId={poster._id} />
+                                ))}
                             </Card>
                         </Col>
                     )}
