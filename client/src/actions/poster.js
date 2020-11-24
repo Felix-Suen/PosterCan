@@ -6,7 +6,9 @@ import {
     UPDATE_LIKES,
     GET_POSTER,
     DELETE_POSTER,
-    ADD_POSTER
+    ADD_POSTER,
+    ADD_COMMENT,
+    REMOVE_COMMENT
 } from './types';
 
 // Get posters
@@ -99,6 +101,45 @@ export const addPoster = formData => async dispatch => {
             payload: res.data,
         })
         dispatch(getPosters());
+    } catch (err) {
+        dispatch({
+            type: POSTER_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+} 
+// add comment
+export const addComent = (postId, formData) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    try {
+        const res = await axios.post(`/api/posters/comment/${postId}`, formData, config);
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data,
+        })
+        // dispatch(getPosters());
+    } catch (err) {
+        dispatch({
+            type: POSTER_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+} 
+// delete comment
+export const deleteComment = (postId, commentId) => async dispatch => {
+    
+    try {
+        const res = await axios.delete(`/api/posters/comment/${postId}/${commentId}`);
+        dispatch({
+            type: REMOVE_COMMENT,
+            payload: commentId,
+        })
+        // dispatch(getPosters());
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,

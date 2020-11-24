@@ -4,7 +4,9 @@ import {
     UPDATE_LIKES,
     GET_POSTER,
     DELETE_POSTER,
-    ADD_POSTER
+    ADD_POSTER,
+    ADD_COMMENT,
+    REMOVE_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -58,6 +60,24 @@ export default function (state = initialState, action) {
                 ),
                 loading: false,
             };
+        case ADD_COMMENT:
+            return {
+                ...state,
+                poster: {
+                    ...state.poster,
+                    comments: payload,
+                    loading: false
+                }
+            }
+        case REMOVE_COMMENT:
+            return {
+                ...state,
+                poster: {
+                    ...state.poster,
+                    comments: state.poster.comments.filter(comment => comment._id !== payload),
+                    loading: false
+                }
+            }
         default:
             return {
                 state,

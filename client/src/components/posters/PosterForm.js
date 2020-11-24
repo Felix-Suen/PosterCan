@@ -85,7 +85,7 @@ const PosterForm = ({ addPoster }) => {
                     <Alert />
 
                     <Button variant="primary" type="submit">
-                        Add Post
+                        Add Poster
                     </Button>
                 </Form>
             </div>
