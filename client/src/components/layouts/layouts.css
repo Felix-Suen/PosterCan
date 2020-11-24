@@ -127,6 +127,11 @@
     border: 2px white solid;
 }
 
+.date {
+    color: rgba(131, 126, 126, 0.933);
+    font-size: 15px;
+}
+
 .round-img {
     border-radius: 50%;
     height: 100px;

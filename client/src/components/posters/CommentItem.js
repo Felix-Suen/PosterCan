@@ -38,8 +38,10 @@ const CommentItem = ({
                                 {text}
                                 <br />
                                 <br />
-                                Posted on{' '}
-                                <Moment format="YYYY/MM/DD">{date}</Moment>
+                                <div className="date">
+                                    Posted on{' '}
+                                    <Moment format="YYYY/MM/DD">{date}</Moment>
+                                </div>
                             </Card.Text>
                         </Card.Body>
                     </Col>

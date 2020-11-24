@@ -49,65 +49,69 @@ const Poster = ({
                                     </Row>
                                 </Container>
                                 <div className="comment">
-                                <Card.Body>
-                                    <Card.Title>{poster.title}</Card.Title>
-                                    <Card.Text>
-                                        Posted on{' '}
-                                        <Moment format="YYYY/MM/DD">
-                                            {poster.date}
-                                        </Moment>
-                                        <br />
-                                        <br />
-                                        {poster.description}
-                                        <div className="poster-likes">
-                                            <button
-                                                type="button"
-                                                className="btn btn-light"
-                                                onClick={() =>
-                                                    !isAuthenticated
-                                                        ? (window.location.href =
-                                                              '/login')
-                                                        : addLike(poster._id)
-                                                }
-                                            >
-                                                <FontAwesomeIcon
-                                                    icon={faHeart}
-                                                />
-                                                <span>
+                                    <Card.Body>
+                                        <Card.Title>{poster.title}</Card.Title>
+                                        <Card.Text>
+                                            <div className="date">
+                                                Posted on{' '}
+                                                <Moment format="YYYY/MM/DD">
+                                                    {poster.date}
+                                                </Moment>
+                                            </div>
+                                            <br />
+                                            {poster.description}
+                                            <div className="poster-likes">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-light"
+                                                    onClick={() =>
+                                                        !isAuthenticated
+                                                            ? (window.location.href =
+                                                                  '/login')
+                                                            : addLike(
+                                                                  poster._id
+                                                              )
+                                                    }
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faHeart}
+                                                    />
                                                     <span>
-                                                        {poster.likes.length >
-                                                            0 && (
-                                                            <span>
-                                                                {' '}
-                                                                {
-                                                                    poster.likes
-                                                                        .length
-                                                                }
-                                                            </span>
-                                                        )}
-                                                    </span>{' '}
-                                                </span>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-light"
-                                                onClick={() =>
-                                                    window.open(
-                                                        poster.images[0],
-                                                        '_blank'
-                                                    )
-                                                }
-                                            >
-                                                <FontAwesomeIcon
-                                                    icon={faDownload}
-                                                />{' '}
-                                                Download
-                                            </button>
-                                        </div>
-                                    </Card.Text>
-                                </Card.Body>
+                                                        <span>
+                                                            {poster.likes
+                                                                .length > 0 && (
+                                                                <span>
+                                                                    {' '}
+                                                                    {
+                                                                        poster
+                                                                            .likes
+                                                                            .length
+                                                                    }
+                                                                </span>
+                                                            )}
+                                                        </span>{' '}
+                                                    </span>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-light"
+                                                    onClick={() =>
+                                                        window.open(
+                                                            poster.images[0],
+                                                            '_blank'
+                                                        )
+                                                    }
+                                                >
+                                                    <FontAwesomeIcon
+                                                        icon={faDownload}
+                                                    />{' '}
+                                                    Download
+                                                </button>
+                                            </div>
+                                        </Card.Text>
+                                    </Card.Body>
                                     <div style={{ padding: '20px' }}>
-                                        <CommentForm poster={poster}/>
+                                        <CommentForm poster={poster} />
                                     </div>
                                     {poster.comments.map((comment) => (
                                         <CommentItem
