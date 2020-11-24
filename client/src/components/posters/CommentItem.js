@@ -26,11 +26,11 @@ const CommentItem = ({
             <Container>
                 <Row>
                     <Col xs={3}>
-                        <div style={{ textAlign: 'center', padding: '20px' }}>
+                        <div style={{ textAlign: 'center' }}>
                             <img className="round-img" src={avatar} />
                         </div>
                     </Col>
-                    <Col xs={7}>
+                    <Col sm={7}>
                         <Card.Body>
                             <Card.Text>
                                 <b style={{ fontSize: '20px' }}>{name}</b>
@@ -43,19 +43,17 @@ const CommentItem = ({
                             </Card.Text>
                         </Card.Body>
                     </Col>
-                    <Col xs={1}>
-                        <div style={{ padding: '20px' }}>
-                            {!auth.loading && auth.user && user === auth.user._id && (
-                                <button
-                                    onClick={() => deleteComment(posterId, _id)}
-                                    type="button"
-                                    className="btn btn-danger"
-                                >
-                                    <FontAwesomeIcon icon={faTrashAlt} />
-                                </button>
-                            )}
-                        </div>
-                    </Col>
+                    <div className="comment-delete">
+                        {!auth.loading && auth.user && user === auth.user._id && (
+                            <button
+                                onClick={() => deleteComment(posterId, _id)}
+                                type="button"
+                                className="btn btn-danger"
+                            >
+                                <FontAwesomeIcon icon={faTrashAlt} />
+                            </button>
+                        )}
+                    </div>
                 </Row>
             </Container>
         </Card>

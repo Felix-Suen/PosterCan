@@ -59,7 +59,7 @@ const Poster = ({
                                         <br />
                                         <br />
                                         {poster.description}
-                                        <div style={{ textAlign: 'right' }}>
+                                        <div className="poster-likes">
                                             <button
                                                 type="button"
                                                 className="btn btn-light"
