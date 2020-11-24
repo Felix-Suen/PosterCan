@@ -9,8 +9,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 import Footer from '../layouts/Footer';
+import CommentForm from './CommentForm';
+import { post } from 'request';
 
-const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuthenticated }) => {
+const Poster = ({
+    getPoster,
+    poster: { poster, loading },
+    match,
+    addLike,
+    isAuthenticated,
+}) => {
     useEffect(() => {
         getPoster(match.params.id);
     }, [getPoster, match.params.id]);
@@ -28,7 +36,10 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuth
                                 <Container>
                                     <Row>
                                         {poster.images.map((image) => (
-                                            <Col sm={true} style={{ padding: 3 }}>
+                                            <Col
+                                                sm={true}
+                                                style={{ padding: 3 }}
+                                            >
                                                 <Card.Img
                                                     variant="top"
                                                     src={image}
@@ -41,12 +52,20 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuth
                                 <Card.Body>
                                     <Card.Title>{poster.title}</Card.Title>
                                     <Card.Text>
+                                        (<Moment format="YYYY/MM/DD">
+                                            {poster.date}
+                                        </Moment>){" "}
                                         {poster.description}
                                         <div style={{ textAlign: 'right' }}>
                                             <button
                                                 type="button"
                                                 className="btn btn-light"
-                                                onClick={() => !isAuthenticated ? (window.location.href='/login') : addLike(poster._id)}
+                                                onClick={() =>
+                                                    !isAuthenticated
+                                                        ? (window.location.href =
+                                                              '/login')
+                                                        : addLike(poster._id)
+                                                }
                                             >
                                                 <FontAwesomeIcon
                                                     icon={faHeart}
@@ -85,11 +104,7 @@ const Poster = ({ getPoster, poster: { poster, loading }, match, addLike, isAuth
                                     </Card.Text>
                                 </Card.Body>
 
-                                <Card.Footer>
-                                    <Moment format="YYYY/MM/DD">
-                                        {poster.date}
-                                    </Moment>
-                                </Card.Footer>
+                                <CommentForm poster={poster} />
                             </Card>
                         </Col>
                     )}
@@ -107,7 +122,7 @@ Poster.propTypes = {
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { getPoster, addLike })(Poster);

@@ -109,7 +109,7 @@ export const addPoster = formData => async dispatch => {
     }
 } 
 // add comment
-export const addComent = (postId, formData) => async dispatch => {
+export const addComment = (postId, formData) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
