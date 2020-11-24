@@ -123,6 +123,21 @@
     border: 2px white solid;
 }
 
+.round-img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.comment {
+    width: 90%;
+    margin: auto
+}
+
+.card-body {
+    padding: 0;
+}
+
 @media only screen and (max-width: 600px) {
     .loginForm {
         position: absolute;

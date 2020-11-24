@@ -4,37 +4,61 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { deleteComment } from '../../actions/poster';
+import '../layouts/layouts.css';
+import { Card, Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const CommentItem = ({
     posterId,
     comment: { _id, text, name, avatar, user, date },
     auth,
-    deleteComment
+    deleteComment,
 }) => {
     return (
-        <div className="post bg-white p-1 my-1">
-            <div>
-                <Link to={`/profile/${user}`}>
-                    <img className="round-img" src={avatar} alt="" />
-                    <h4>{name}</h4>
-                </Link>
-            </div>
-            <div>
-                <p className="my-1">{text}</p>
-                <p className="post-date">
-                    Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
-                </p>
-                {!auth.loading && user === auth.user._id && (
-                    <button
-                        onClick={() => deleteComment(posterId, _id)}
-                        type="button"
-                        className="btn btn-danger"
-                    >
-                        <i className="fas fa-times" />
-                    </button>
-                )}
-            </div>
-        </div>
+        <Card
+            style={{
+                borderTop: 'none',
+                borderRight: 'none',
+                borderLeft: 'none',
+            }}
+        >
+            <Container>
+                <Row>
+                    <Col xs={3}>
+                        <div style={{ textAlign: 'center', padding: '20px' }}>
+                            <img className="round-img" src={avatar} />
+                        </div>
+                    </Col>
+                    <Col xs={7}>
+                        <Card.Body>
+                            <Card.Text>
+                                <b style={{ fontSize: '20px' }}>{name}</b>
+                                <br />
+                                {text}
+                                <br />
+                                <br />
+                                Posted on{' '}
+                                <Moment format="YYYY/MM/DD">{date}</Moment>
+                            </Card.Text>
+                        </Card.Body>
+                    </Col>
+                    <Col xs={1}>
+                        <div style={{ padding: '20px' }}>
+                            {!auth.loading && auth.user && user === auth.user._id && (
+                                <button
+                                    onClick={() => deleteComment(posterId, _id)}
+                                    type="button"
+                                    className="btn btn-danger"
+                                >
+                                    <FontAwesomeIcon icon={faTrashAlt} />
+                                </button>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </Card>
     );
 };
 

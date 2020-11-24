@@ -48,14 +48,16 @@ const Poster = ({
                                         ))}
                                     </Row>
                                 </Container>
-
+                                <div className="comment">
                                 <Card.Body>
                                     <Card.Title>{poster.title}</Card.Title>
                                     <Card.Text>
-                                        Posted on <Moment format="YYYY/MM/DD">
+                                        Posted on{' '}
+                                        <Moment format="YYYY/MM/DD">
                                             {poster.date}
                                         </Moment>
-                                        <br /><br />
+                                        <br />
+                                        <br />
                                         {poster.description}
                                         <div style={{ textAlign: 'right' }}>
                                             <button
@@ -104,10 +106,17 @@ const Poster = ({
                                         </div>
                                     </Card.Text>
                                 </Card.Body>
-                                <CommentForm poster={poster} />
-                                {poster.comments.map(comment => (
-                                    <CommentItem key={comment._id} comment={comment} posterId={poster._id} />
-                                ))}
+                                    <div style={{ padding: '20px' }}>
+                                        <CommentForm poster={poster}/>
+                                    </div>
+                                    {poster.comments.map((comment) => (
+                                        <CommentItem
+                                            key={comment._id}
+                                            comment={comment}
+                                            posterId={poster._id}
+                                        />
+                                    ))}
+                                </div>
                             </Card>
                         </Col>
                     )}

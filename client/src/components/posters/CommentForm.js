@@ -27,11 +27,11 @@ const CommentForm = ({ poster, addComment }) => {
                         required
                     />
                 </Form.Group>
-                <input
+                <Button
                     type="submit"
-                    className="btn btn-dark my-1"
+                    variant="dark"
                     value="Submit"
-                />
+                >Submit</Button>
             </Form>
         </div>
     );
