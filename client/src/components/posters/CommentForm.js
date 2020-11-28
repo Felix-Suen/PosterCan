@@ -16,6 +16,7 @@ const CommentForm = ({ poster, addComment }) => {
                     addComment(poster._id, { text });
                     setText('');
                 }}
+                style={{ textAlign: 'right' }}
             >
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Control

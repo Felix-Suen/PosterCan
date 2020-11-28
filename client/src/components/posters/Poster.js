@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPoster } from '../../actions/poster';
@@ -22,6 +23,12 @@ const Poster = ({
     useEffect(() => {
         getPoster(match.params.id);
     }, [getPoster, match.params.id]);
+
+    const login = (
+        <div>
+            Please <Link to='/login'>Login</Link> or <Link to='/register' >Sign up</Link> to Comment on this Post!
+        </div>
+    );
 
     return (
         <div className="poster">
@@ -111,7 +118,7 @@ const Poster = ({
                                         </Card.Text>
                                     </Card.Body>
                                     <div style={{ padding: '20px' }}>
-                                        <CommentForm poster={poster} />
+                                        {isAuthenticated ? (<CommentForm poster={poster} />) : login}
                                     </div>
                                     {poster.comments.map((comment) => (
                                         <CommentItem
