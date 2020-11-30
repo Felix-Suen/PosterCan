@@ -47,60 +47,57 @@ const Posters = ({
                                                 <Card.Title>
                                                     {poster.title}
                                                 </Card.Title>
-                                                <Card.Text>
-                                                    <Card.Text>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-light"
-                                                            onClick={() =>
-                                                                !auth.isAuthenticated
-                                                                    ? (window.location.href =
-                                                                          '/login')
-                                                                    : addLike(
-                                                                          poster._id
-                                                                      )
-                                                            }
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={faHeart}
-                                                            />
+                                                <Card.Text style={{ textAlign: 'right' }}>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-light"
+                                                        onClick={() =>
+                                                            !auth.isAuthenticated
+                                                                ? (window.location.href =
+                                                                      '/login')
+                                                                : addLike(
+                                                                      poster._id
+                                                                  )
+                                                        }
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            icon={faHeart}
+                                                        />
+                                                        <span>
                                                             <span>
-                                                                <span>
-                                                                    {poster
-                                                                        .likes
-                                                                        .length >
-                                                                        0 && (
-                                                                        <span>
-                                                                            {' '}
-                                                                            {
-                                                                                poster
-                                                                                    .likes
-                                                                                    .length
-                                                                            }
-                                                                        </span>
-                                                                    )}
-                                                                </span>{' '}
-                                                            </span>
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            className="btn btn-light"
-                                                            onClick={() =>
-                                                                window.open(
-                                                                    poster
-                                                                        .images[0],
-                                                                    '_blank'
-                                                                )
-                                                            }
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={
-                                                                    faDownload
-                                                                }
-                                                            />{' '}
-                                                            Download
-                                                        </button>
-                                                        {auth.isAuthenticated && auth.user.admin && (
+                                                                {poster.likes
+                                                                    .length >
+                                                                    0 && (
+                                                                    <span>
+                                                                        {' '}
+                                                                        {
+                                                                            poster
+                                                                                .likes
+                                                                                .length
+                                                                        }
+                                                                    </span>
+                                                                )}
+                                                            </span>{' '}
+                                                        </span>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-light"
+                                                        onClick={() =>
+                                                            window.open(
+                                                                poster
+                                                                    .images[0],
+                                                                '_blank'
+                                                            )
+                                                        }
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            icon={faDownload}
+                                                        />{' '}
+                                                        Download
+                                                    </button>
+                                                    {auth.isAuthenticated &&
+                                                        auth.user.admin && (
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-danger"
@@ -117,7 +114,6 @@ const Posters = ({
                                                                 />
                                                             </button>
                                                         )}
-                                                    </Card.Text>
                                                 </Card.Text>
                                             </Card.Body>
                                         </Card>
