@@ -24,6 +24,7 @@
     "config": "^3.3.2",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "framer-motion": "^2.9.4",
     "gravatar": "^1.8.1",
     "jsonwebtoken": "^8.5.1",
     "lodash-es": "^4.17.15",

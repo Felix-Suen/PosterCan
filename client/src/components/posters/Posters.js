@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../layouts/Spinner';
 import '../layouts/layouts.css';
 import { Link } from 'react-router-dom';
+import About from '../layouts/About';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../layouts/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -122,6 +123,7 @@ const Posters = ({
                         </Row>
                     </Container>
                 </div>
+                <About />
                 <Footer />
             </div>
         </div>
