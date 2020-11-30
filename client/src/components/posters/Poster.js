@@ -50,6 +50,7 @@ const Poster = ({
                                                 <Card.Img
                                                     variant="top"
                                                     src={image}
+                                                    style={{ height: "100%" }}
                                                 />
                                             </Col>
                                         ))}
