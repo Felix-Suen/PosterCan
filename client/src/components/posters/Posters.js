@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layouts/Spinner';
@@ -21,6 +21,7 @@ const Posters = ({
     auth,
     deletePoster,
 }) => {
+
     return loading ? (
         <Spinner />
     ) : (
@@ -48,7 +49,11 @@ const Posters = ({
                                                 <Card.Title>
                                                     {poster.title}
                                                 </Card.Title>
-                                                <Card.Text style={{ textAlign: 'right' }}>
+                                                <Card.Text
+                                                    style={{
+                                                        textAlign: 'right',
+                                                    }}
+                                                >
                                                     <button
                                                         type="button"
                                                         className="btn btn-light"

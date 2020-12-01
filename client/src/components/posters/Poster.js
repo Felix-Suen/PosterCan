@@ -7,7 +7,7 @@ import '../layouts/layouts.css';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDownload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faDownload, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 import Footer from '../layouts/Footer';
 import CommentForm from './CommentForm';
@@ -71,22 +71,22 @@ const Poster = ({
                                             <br />
                                             {poster.description}
 
-                                            {auth.isAuthenticated &&
-                                                auth.user.admin && (
-                                                    <button
-                                                        type="button"
-                                                        className="btn btn-danger"
-                                                        onClick={() =>
-                                                            (window.location.href = `/edit/${match.params.id}`)
-                                                        }
-                                                    >
-                                                        <FontAwesomeIcon
-                                                            icon={faTrashAlt}
-                                                        />
-                                                    </button>
-                                                )}
-
                                             <div className="poster-likes">
+                                                {auth.isAuthenticated &&
+                                                    auth.user.admin && (
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-light"
+                                                            onClick={() =>
+                                                                (window.location.href = `/edit/${match.params.id}`)
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faEdit}
+                                                            />
+                                                        </button>
+                                                    )}
+
                                                 <button
                                                     type="button"
                                                     className="btn btn-light"

@@ -23,7 +23,7 @@ export const loadUser = () => async (dispatch) => {
 
         dispatch(getPosters());
 
-        dispatch({
+        await dispatch({
             type: USER_LOADED,
             payload: res.data,
         });

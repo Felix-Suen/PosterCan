@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setAlert } from './alert';
+import { loadUser } from './auth.js';
 import {
     GET_POSTERS,
     POSTER_ERROR,
@@ -21,6 +21,7 @@ export const getPosters = () => async dispatch => {
             type: GET_POSTERS,
             payload: res.data
         })
+
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,
@@ -52,12 +53,16 @@ export const addLike = posterId => async dispatch => {
 // Get poster
 export const getPoster = (id) => async dispatch => {
     try {
+        await dispatch(loadUser());
+
         const res = await axios.get(`/api/posters/${id}`);
 
         dispatch({
             type: GET_POSTER,
             payload: res.data
         })
+
+        
     } catch (err) {
         dispatch({
             type: POSTER_ERROR,

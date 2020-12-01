@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPoster, getPoster } from '../../actions/poster';
+import { editPoster, getPoster } from '../../actions/poster';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Alert from '../layouts/Alert';
 
-const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
+const EditProfile = ({ editPoster, getPoster, poster:{ poster, loading }, match, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         images1: '',
         images2: '',
@@ -19,6 +19,17 @@ const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
 
     const images = [images1, images2, images3];
 
+    // useEffect(() => {
+    //     getPoster(match.params.id);
+    //     setFormData({
+    //         images1: loading || !poster.images[0] ? '' : poster.images[0],
+    //         images2: loading || !poster.images[1] ? '' : poster.images[1],
+    //         images3: loading || !poster.images[2] ? '' : poster.images[2],
+    //         title: poster.title,
+    //         description: poster.description
+    //     })
+    // }, [loading]);
+
     const onChange = (e) =>
         setFormData({
             ...formData,
@@ -29,7 +40,7 @@ const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        addPoster({ images, title, description });
+        editPoster(match.params.id, { images, title, description });
         let path = `/`; 
         history.push(path);
     };
@@ -37,7 +48,7 @@ const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
     return (
         <div className="snow">
             <div className="loginForm">
-                <h2 style={{ textAlign: 'center' }}>Add A Poster</h2>
+                <h2 style={{ textAlign: 'center' }}>Edit Poster</h2>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <Form.Group>
                         <Form.Label>Images</Form.Label>
@@ -96,7 +107,7 @@ const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
 };
 
 EditProfile.propTypes = {
-    addPoster: PropTypes.func.isRequired,
+    editPoster: PropTypes.func.isRequired,
     getPoster: PropTypes.func.isRequired,
     poster: PropTypes.object.isRequired,
 };
@@ -106,4 +117,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addPoster, getPoster })(EditProfile);
+export default connect(mapStateToProps, { editPoster, getPoster })(EditProfile);
