@@ -87,7 +87,7 @@ const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
                     <Alert />
 
                     <Button variant="primary" type="submit">
-                        Add Poster
+                        Edit Poster
                     </Button>
                 </Form>
             </div>

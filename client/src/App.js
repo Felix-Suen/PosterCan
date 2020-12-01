@@ -11,6 +11,7 @@ import AdminRoute from './components/routing/AdminRoute';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Poster from './components/posters/Poster';
 import PosterForm from './components/posters/PosterForm';
+import EditPoster from './components/posters/EditPoster';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -40,6 +41,7 @@ const App = () => {
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/posters/:id" component={Poster} />
                             <AdminRoute exact path="/add" component={PosterForm} />
+                            <AdminRoute exact path="/edit/:id" component={EditPoster} />
                         </Switch>
                     </section>
                 </div>

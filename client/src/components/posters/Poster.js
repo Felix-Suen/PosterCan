@@ -7,7 +7,7 @@ import '../layouts/layouts.css';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faDownload, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { addLike } from '../../actions/poster';
 import Footer from '../layouts/Footer';
 import CommentForm from './CommentForm';
@@ -18,6 +18,7 @@ const Poster = ({
     poster: { poster, loading },
     match,
     addLike,
+    auth,
     isAuthenticated,
 }) => {
     useEffect(() => {
@@ -26,7 +27,8 @@ const Poster = ({
 
     const login = (
         <div>
-            Please <Link to='/login'>Login</Link> or <Link to='/register' >Sign up</Link> to Comment on this Post!
+            Please <Link to="/login">Login</Link> or{' '}
+            <Link to="/register">Sign up</Link> to Comment on this Post!
         </div>
     );
 
@@ -50,7 +52,7 @@ const Poster = ({
                                                 <Card.Img
                                                     variant="top"
                                                     src={image}
-                                                    style={{ height: "100%" }}
+                                                    style={{ height: '100%' }}
                                                 />
                                             </Col>
                                         ))}
@@ -68,6 +70,22 @@ const Poster = ({
                                             </div>
                                             <br />
                                             {poster.description}
+
+                                            {auth.isAuthenticated &&
+                                                auth.user.admin && (
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-danger"
+                                                        onClick={() =>
+                                                            (window.location.href = `/edit/${match.params.id}`)
+                                                        }
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            icon={faTrashAlt}
+                                                        />
+                                                    </button>
+                                                )}
+
                                             <div className="poster-likes">
                                                 <button
                                                     type="button"
@@ -119,7 +137,11 @@ const Poster = ({
                                         </Card.Text>
                                     </Card.Body>
                                     <div style={{ padding: '20px' }}>
-                                        {isAuthenticated ? (<CommentForm poster={poster} />) : login}
+                                        {isAuthenticated ? (
+                                            <CommentForm poster={poster} />
+                                        ) : (
+                                            login
+                                        )}
                                     </div>
                                     {poster.comments.map((comment) => (
                                         <CommentItem
@@ -146,6 +168,7 @@ Poster.propTypes = {
 
 const mapStateToProps = (state) => ({
     poster: state.poster,
+    auth: state.auth,
     isAuthenticated: state.auth.isAuthenticated,
 });
 

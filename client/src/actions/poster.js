@@ -8,7 +8,8 @@ import {
     DELETE_POSTER,
     ADD_POSTER,
     ADD_COMMENT,
-    REMOVE_COMMENT
+    REMOVE_COMMENT,
+    EDIT_POSTER
 } from './types';
 
 // Get posters
@@ -108,6 +109,30 @@ export const addPoster = formData => async dispatch => {
         })
     }
 } 
+
+// edit poster
+export const editPoster = (id, formData) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    try {
+        const res = await axios.post(`/api/posters/edit/${id}`, formData, config);
+        dispatch({
+            type: EDIT_POSTER,
+            payload: res.data,
+        })
+        dispatch(getPosters());
+    } catch (err) {
+        dispatch({
+            type: POSTER_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        })
+    }
+} 
+
 // add comment
 export const addComment = (postId, formData) => async dispatch => {
     const config = {

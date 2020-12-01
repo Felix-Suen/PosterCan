@@ -15,5 +15,6 @@ export const UPDATE_LIKES = 'UPDATE_LIKES';
 
 export const DELETE_POSTER = 'DELETE_POSTER';
 export const ADD_POSTER = 'ADD_POSTER';
+export const EDIT_POSTER = 'EDIT_POSTER';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';

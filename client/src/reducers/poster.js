@@ -6,7 +6,8 @@ import {
     DELETE_POSTER,
     ADD_POSTER,
     ADD_COMMENT,
-    REMOVE_COMMENT
+    REMOVE_COMMENT,
+    EDIT_POSTER
 } from '../actions/types';
 
 const initialState = {
@@ -27,6 +28,7 @@ export default function (state = initialState, action) {
                 loading: false,
             };
         case ADD_POSTER:
+        case EDIT_POSTER:
             return {
                 ...state,
                 posters: [...state.posters, payload],
