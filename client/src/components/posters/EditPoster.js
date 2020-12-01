@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Alert from '../layouts/Alert';
 
-const EditProfile = ({ addPoster, getPoster }) => {
+const EditProfile = ({ addPoster, getPoster, poster, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         images1: '',
         images2: '',
@@ -98,11 +98,12 @@ const EditProfile = ({ addPoster, getPoster }) => {
 EditProfile.propTypes = {
     addPoster: PropTypes.func.isRequired,
     getPoster: PropTypes.func.isRequired,
+    poster: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state = ({
+const mapStateToProps = (state) => ({
     poster: state.poster,
-    isAuthenticated: state.auth.isAuthenticated,
+    auth: state.auth,
 });
 
 export default connect(mapStateToProps, { addPoster, getPoster })(EditProfile);

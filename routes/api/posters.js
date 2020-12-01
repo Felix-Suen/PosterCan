@@ -16,7 +16,7 @@ router.post(
         [
             check('images', 'image is required').isArray(1, 3),
             check('description', 'Enter description').notEmpty(),
-            check('title', 'Title is required').notEmpty()
+            check('title', 'Title is required').notEmpty(),
         ],
     ],
     async (req, res) => {
@@ -29,15 +29,69 @@ router.post(
             const user = await User.findById(req.user.id).select('-password');
 
             if (user.admin) {
-                const newPoster = new Poster({
-                    images: req.body.images,
-                    title: req.body.title,
-                    description: req.body.description,
-                    user: req.user.id,
-                });
+                const posterField = {};
+
+                posterField.images = req.body.images;
+                posterField.title = req.body.title;
+                posterField.description = req.body.description;
+                posterField.user = req.user.id;
+
+                const newPoster = new Poster(posterField);
 
                 const poster = await newPoster.save();
 
+                res.json(poster);
+            } else {
+                return res.status(401).json({ msg: 'User Unauthorized' });
+            }
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).send('server error');
+        }
+    }
+);
+
+// @route   POST api/posters/edit/:id
+// @desc    Edit a poster
+// @access  Private
+router.post(
+    '/edit/:id',
+    [
+        auth,
+        [
+            check('images', 'image is required').isArray(1, 3),
+            check('description', 'Enter description').notEmpty(),
+            check('title', 'Title is required').notEmpty(),
+        ],
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        try {
+            const user = await User.findById(req.user.id).select('-password');
+            // const poster = await Poster.findById(req.params.id);
+
+            if (user.admin) {
+                const posterField = {};
+
+                posterField.images = req.body.images;
+                posterField.title = req.body.title;
+                posterField.description = req.body.description;
+                posterField.user = req.user.id;
+
+                console.log(posterField);
+
+                poster = await Poster.findByIdAndUpdate(
+                    req.params.id,
+                    { $set: posterField },
+                    { new: true }
+                );
+
+                await poster.save();
+                
                 res.json(poster);
             } else {
                 return res.status(401).json({ msg: 'User Unauthorized' });
@@ -124,14 +178,14 @@ router.put('/like/:id', auth, async (req, res) => {
         ) {
             // return res.status(400).json({ msg: 'Poster Already Liked' });
             const removeIndex = poster.likes
-            .map((like) => like.user.toString())
-            .indexOf(req.user.id);
+                .map((like) => like.user.toString())
+                .indexOf(req.user.id);
 
             poster.likes.splice(removeIndex, 1);
         } else {
             poster.likes.unshift({ user: req.user.id });
         }
-
+        
         await poster.save();
 
         res.json(poster.likes);
@@ -217,7 +271,9 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
         const poster = await Poster.findById(req.params.id);
 
         // pull out comment
-        const comment = poster.comments.find(comment => comment.id === req.params.comment_id);
+        const comment = poster.comments.find(
+            (comment) => comment.id === req.params.comment_id
+        );
 
         // Make sure comment exists
         if (!comment) {
@@ -226,7 +282,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
         // User verify
         if (comment.user.toString() !== req.user.id) {
-            return res.status(401).json({ msg: "user not authorized" });
+            return res.status(401).json({ msg: 'user not authorized' });
         }
 
         const removeIndex = poster.comments
