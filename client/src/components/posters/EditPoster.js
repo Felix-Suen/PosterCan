@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addPoster } from '../../actions/poster';
+import { addPoster, getPoster } from '../../actions/poster';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Alert from '../layouts/Alert';
 
-const PosterForm = ({ addPoster }) => {
+const EditProfile = ({ addPoster, getPoster }) => {
     const [formData, setFormData] = useState({
         images1: '',
         images2: '',
@@ -95,8 +95,14 @@ const PosterForm = ({ addPoster }) => {
     );
 };
 
-PosterForm.propTypes = {
+EditProfile.propTypes = {
     addPoster: PropTypes.func.isRequired,
+    getPoster: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addPoster })(PosterForm);
+const mapStateToProps = state = ({
+    poster: state.poster,
+    isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { addPoster, getPoster })(EditProfile);
