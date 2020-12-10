@@ -45,7 +45,7 @@ const Posters = ({
                                                 />
                                             </Link>
 
-                                            <Card.Body style={{ backgroundColor: "rgba(245, 245, 245, 0.4)" }}>
+                                            <Card.Body>
                                                 <Card.Title>
                                                     {poster.title}
                                                 </Card.Title>
